@@ -7,6 +7,29 @@
 <body>  
  <canvas id="niceCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
 Your browser does not support the HTML canvas tag.</canvas>
+<p>Countdown: <output id="result"></output></p>
+<button onclick="startWorker()">Start Worker</button> 
+<button onclick="stopWorker()">Stop Worker</button>
+<p><strong>Note:</strong> stop watch.</p>
+<script>
+var w;
+function startWorker() {
+  if(typeof(Worker) !== "undefined") {
+    if(typeof(w) == "undefined") {
+      w = new Worker("demo_workers.js");
+    }
+    w.onmessage = function(event) {
+      document.getElementById("result").innerHTML = event.data;
+    };
+  } else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+  }
+}
+function stopWorker() { 
+  w.terminate();
+  w = undefined;
+}
+</script>
 <script>
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
