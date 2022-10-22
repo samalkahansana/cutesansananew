@@ -7,12 +7,15 @@
 <body>  
  <canvas id="niceCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
 Your browser does not support the HTML canvas tag.</canvas>
-<p>Countdown: <output id="result"></output></p>
-<button onclick="startWorker()">Start Worker</button> 
-<button onclick="stopWorker()">Stop Worker</button>
-<p><strong>Note:</strong> stop watch.</p>
+<p>Count numbers: <output id="result"></output></p>
+<button onclick="startWorker()">Start</button> 
+<button onclick="stopWorker()">Stop</button>
+
+<p><strong>Note:</strong>did you enjoy it?.</p>
+
 <script>
 var w;
+
 function startWorker() {
   if(typeof(Worker) !== "undefined") {
     if(typeof(w) == "undefined") {
@@ -25,6 +28,7 @@ function startWorker() {
     document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
   }
 }
+
 function stopWorker() { 
   w.terminate();
   w = undefined;
