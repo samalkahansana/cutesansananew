@@ -5,6 +5,29 @@
 <title>CUTE SANSANA</title> 
 </head> 
 <body>  
+<style>
+#div1 {
+  width: 360px;
+  height: 70px;
+  padding: 100px;
+  border: 1px solid #aaaaaa;
+}
+</style>
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
 <p>Click the try it button.</p>
 
 <button onclick="getLocation()">Try It</button>
